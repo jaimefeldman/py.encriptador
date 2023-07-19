@@ -14,4 +14,4 @@ Modulos de ejmplo de como usar python-gnupg en nuestro proyectos.
 ## Contribuciones
 
 ## Liciencia
-[MIT](https://opensource.org/licenses/mit-license.php)
+[GPL2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.txt)
