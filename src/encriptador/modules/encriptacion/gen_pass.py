@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-    encriptacion.gen_keys
+    encriptacion.gen_pass
     ~~~~~~~~~~~~~~~~~~~~~
 
-    Genera un par de llaves publicas y privadas y las instala en
-    el anillo de llaves del usuario.
+    Generador de claves aleatorias.
 
-    :license: GPL2 
-    Copyright © 2023 Jaime Andres Feldman Budnik
+    :copyright: (c) 2023 by yo.
+    :license: GP2 gen_pass.py - Generandor de claves aleatorias
+    Copyright © 2023 Jaime Feldman Budnik
     
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,28 +24,9 @@
     , see LICENSE for more details.
 """
 
-import gnupg
-import os, sys
+import random
+import string
 
-# Obteniendo el directorio el directorio de usuairo.
-homedir = os.path.expanduser('~')
-
-# Inicializando gnupg con el llavero en la carpeta del usuario.
-
-# En GNU/Linux Manajro funciona de esta forma.
-gpg = gnupg.GPG(gpgbinary='/usr/bin/gpg')
-# os.popen("which gpg").read().strip()
-
-# gpg = gnupg.GPG(homedir + '/.gnupg')
-
-gpg.encoding = 'utf-8'
-
-input_data = gpg.gen_key_input(
-    name_email = 'alice@cuper.org',
-    passphrase = 'mypassphrase',
-    key_type = 'RSA',
-    key_length = 2048)
-
-key = gpg.gen_key(input_data)
-print(key)
-
+def genpass(password_lenght) -> str:
+    passphrase = "".join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(password_lenght))
+    return passphrase
