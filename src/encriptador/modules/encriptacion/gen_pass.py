@@ -26,7 +26,10 @@
 
 import random
 import string
+import re
 
-def genpass(password_lenght) -> str:
+def genpass(password_lenght, chuncks) -> str:
     passphrase = "".join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(password_lenght))
-    return passphrase
+    # return passphrase
+    regex = re.sub(r'((?:(?=(10|.))\2){' + f'{chuncks}' +'})(?!$)', r'\1-',passphrase)
+    return regex 
